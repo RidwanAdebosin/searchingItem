@@ -1,14 +1,10 @@
-import React from 'react';
-import SearchComponent from './components/SearchComponent';
-import { demoUsers } from './components/usersData';
+import SearchComponent from "./components/SearchComponent";
+import { Users } from "./components/usersData";
 
 const App = () => {
-
-
   return (
-    <div>
-      <h1>Search Users</h1>
-      <SearchComponent users={demoUsers} />
+    <div className="bg-slate-500 h-svh">
+      <SearchComponent users={Users} />
     </div>
   );
 };
