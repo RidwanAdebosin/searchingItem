@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { UserData } from "./usersData";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 type SearchComponentProps = {
   users: UserData[];
@@ -24,9 +26,13 @@ const SearchComponent = ({ users }: SearchComponentProps) => {
     setFilteredUsers(newFilteredUsers);
   };
 
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <div className="p-20 pt-2 m-auto">
-      <form>
+      <form data-aos="fade-down">
         <label htmlFor="search" className="block mb-8 font-bold">
           Search Users
         </label>
@@ -43,6 +49,7 @@ const SearchComponent = ({ users }: SearchComponentProps) => {
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
           {filteredUsers.map((user: UserData) => (
             <li
+              data-aos="fade-up"
               key={user.id}
               className="bg-slate-300 border rounded-lg p-3 flex gap-4 cursor-pointer"
             >
