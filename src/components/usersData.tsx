@@ -1,4 +1,4 @@
-export interface UserData {
+export interface UserDataProps {
   id: number;
   name: string;
   age: number;
@@ -6,7 +6,7 @@ export interface UserData {
   image: string;
 }
 
-export const Users: UserData[] = [
+export const Users: UserDataProps[] = [
   {
     id: 1,
     name: "John Doe",

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { UserData } from "./usersData";
+import { UserDataProps } from "./usersData";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 type SearchComponentProps = {
-  users: UserData[];
+  users: UserDataProps[];
 };
 
 const SearchComponent = ({ users }: SearchComponentProps) => {
@@ -18,7 +18,7 @@ const SearchComponent = ({ users }: SearchComponentProps) => {
 
     // Filter users based on the name or place of birth
     const newFilteredUsers = users.filter(
-      (user: UserData) =>
+      (user: UserDataProps) =>
         user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         user.placeOfBirth.toLowerCase().includes(searchValue.toLowerCase())
     );
@@ -26,6 +26,7 @@ const SearchComponent = ({ users }: SearchComponentProps) => {
     setFilteredUsers(newFilteredUsers);
   };
 
+  //aos animation
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
@@ -33,21 +34,21 @@ const SearchComponent = ({ users }: SearchComponentProps) => {
   return (
     <div className="p-20 pt-2 m-auto">
       <form data-aos="fade-down">
-        <label htmlFor="search" className="block mb-8 font-bold">
+        <label htmlFor="search" className="block mt-4 mb-4 font-bold text-2xl">
           Search Users
         </label>
         <input
           id="search"
           type="text"
           placeholder="Search by name or place of birth..."
-          className="w-2/3 rounded p-2"
+          className="w-2/3 rounded p-2 border"
           value={searchItem}
           onChange={handleSearchItem}
         />
       </form>
       {filteredUsers.length > 0 ? (
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          {filteredUsers.map((user: UserData) => (
+          {filteredUsers.map((user: UserDataProps) => (
             <li
               data-aos="fade-up"
               key={user.id}
